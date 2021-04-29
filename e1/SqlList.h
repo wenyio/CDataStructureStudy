@@ -90,7 +90,7 @@ SqList delSqList(SqList L) {
 }
 
 /**
- * 顺序有序表的合并
+ * 顺序有序表的合并 TODO 非递增
  * @param LA
  * @param LB
  * @return LC
