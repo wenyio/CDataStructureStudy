@@ -90,7 +90,7 @@ SqList delSqList(SqList L) {
 }
 
 /**
- * 顺序有序表的合并 TODO 非递增
+ * 顺序有序表的合并
  * @param LA
  * @param LB
  * @return LC
@@ -115,6 +115,37 @@ SqList SqList_merge(SqList LA, SqList LB) {
     }
     while(*pb <= pb_last) { // pa 已到达表尾，将pb最后元素插入 pc
         *pc++ = *pb++;
+    }
+    return LC;
+}
+
+
+/**
+ * 非递减的 顺序有序表的合并 为非递增有序表 TODO 非递增： 9 5 4 0 非递减： 1 2 3
+ * @param LA 非递减
+ * @param LB 非递减
+ * @return LC 非递增
+ */
+SqList SqList_merge_1(SqList LA, SqList LB) {
+    SqList LC;
+    LC.length = LA.length + LB.length; // 新表的长度
+    int *pc = LC.elem; // pc 指向新表第一个元素
+    int *pa = &LA.elem[LA.length - 1]; // pa 指向A表最后一个元素
+    int *pb = &LB.elem[LB.length - 1]; // pb 指向B表最后一个元素
+    int pa_last = LA.elem[0]; // 指针pa_last指向A表第一个元素
+    int pb_last = LB.elem[0]; // 指针pb_last指向B表第一个元素
+    while ((*pa >= pa_last) && (*pb >= pb_last)) { // 都没有到达尾部
+        if (*pa >= *pb) { // 如果 pa 大于 pb，将pa插入 pc，否则插入 pb
+            *pc++ = *pa--;
+        } else {
+            *pc++ = *pb--;
+        }
+    }
+    while(*pa >= pa_last) { // pb 已到达表尾，将pa最后元素 倒序 插入 pc
+        *pc++ = *pa--;
+    }
+    while(*pb >= pb_last) { // pa 已到达表尾，将pb最后元素 倒序 插入 pc
+        *pc++ = *pb--;
     }
     return LC;
 }

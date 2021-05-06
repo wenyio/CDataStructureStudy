@@ -66,8 +66,13 @@ void e2_test() {
  */
 void e3_test() {
     SqList LA = init();
+    printf("LA如下：\n");
+    SqList_display(LA);
     SqList LB = init();
-    SqList LC = SqList_merge(LA, LB);
+    printf("LB如下：\n");
+    SqList_display(LB);
+//    SqList LC = SqList_merge(LA, LB);
+    SqList LC = SqList_merge_1(LA, LB);
     printf("合并后如下：\n");
     SqList_display(LC);
 }
